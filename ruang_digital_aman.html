@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ruang Digital Aman — belajar mengenali hoaks, memeriksa informasi, membuat password kuat, dan beretika di media sosial.">
+<title>Ruang Digital Aman | Literasi Digital</title>
+<style>
+:root{--navy:#102a43;--blue:#1769aa;--cyan:#dff4ff;--mint:#e7f7f1;--ink:#203247;--muted:#62758a;--paper:#f5f9fc;--white:#fff;--line:#dce7ef;--gold:#ffd166}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+header{background:linear-gradient(120deg,#102a43,#1769aa);color:white;padding:18px 6%;position:sticky;top:0;z-index:10;box-shadow:0 4px 18px #102a4320}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1150px;margin:auto}.brand{font-weight:800;font-size:1.15rem;letter-spacing:.3px}.brand span{color:var(--gold)}nav{display:flex;gap:18px;flex-wrap:wrap}nav a{color:#eaf6ff;text-decoration:none;font-size:.9rem;font-weight:600}nav a:hover{text-decoration:underline}
+.hero{padding:76px 6% 66px;background:linear-gradient(120deg,#e6f6ff,#f5fbff 55%,#e8f8f1)}.hero-inner{max-width:1150px;margin:auto;display:grid;grid-template-columns:1.3fr .7fr;gap:35px;align-items:center}.eyebrow{color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:1.6px;font-size:.78rem}.hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.08;margin:12px 0;color:var(--navy)}.hero p{font-size:1.08rem;color:#52677b;max-width:650px}.hero-card{background:white;border:1px solid var(--line);padding:26px;border-radius:24px;box-shadow:0 16px 40px #17456b12}.hero-card .symbol{font-size:3.5rem}.hero-card strong{display:block;font-size:1.2rem;color:var(--navy)}.btn{display:inline-block;background:var(--blue);color:white;padding:12px 19px;border-radius:11px;text-decoration:none;border:0;font-weight:700;cursor:pointer}.btn:hover{background:#0f548d}.btn.secondary{background:#e8f3fa;color:var(--navy)}
+main{max-width:1150px;margin:auto;padding:48px 6%}.section-head{margin-bottom:25px}.section-head h2{font-size:2rem;color:var(--navy);margin:0 0 5px}.section-head p{color:var(--muted);margin:0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:23px;box-shadow:0 7px 22px #102a4308}.card .icon{font-size:2rem}.card h3{color:var(--navy);margin:10px 0 6px}.card p{color:var(--muted);margin-top:0}.card a{color:var(--blue);font-weight:700;text-decoration:none}.card a:hover{text-decoration:underline}
+.content-section{margin-top:58px;scroll-margin-top:95px}.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:26px;margin-top:16px}.panel h3{color:var(--navy);margin-top:0}.checklist{padding-left:22px}.checklist li{margin:9px 0}.tip{background:var(--mint);border-left:4px solid #2c9b78;padding:13px 16px;border-radius:8px;margin:18px 0}
+.quiz{background:#f0f7ff;border-radius:16px;padding:20px;margin-top:18px}.quiz label{display:block;margin:9px 0;cursor:pointer}.quiz button{margin-top:10px}.result{font-weight:700;margin-top:12px}
+.steps{counter-reset:step;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{background:#f6fbff;border:1px solid var(--line);padding:18px;border-radius:14px}.step:before{counter-increment:step;content:counter(step);display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--blue);color:white;font-weight:800;margin-bottom:8px}
+.password-tool{display:flex;gap:10px;flex-wrap:wrap}.password-tool input{flex:1;min-width:220px;padding:12px;border:1px solid #bdcbd8;border-radius:10px;font-size:1rem}.meter{height:9px;background:#e4ebf1;border-radius:20px;overflow:hidden;margin:12px 0}.meter span{display:block;height:100%;width:0;background:#2c9b78;transition:.2s}
+footer{background:var(--navy);color:#d9e8f4;padding:30px 6%;text-align:center;margin-top:55px}footer a{color:#9bd8ff}
+.small{font-size:.88rem;color:var(--muted)}.source-list li{margin:10px 0;overflow-wrap:anywhere}.source-list a{color:var(--blue)}
+@media(max-width:800px){.hero-inner{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}nav{gap:10px}.nav{align-items:flex-start;flex-direction:column}}
+@media(max-width:520px){.cards{grid-template-columns:1fr}.hero{padding-top:48px}main{padding-top:35px}nav a{font-size:.82rem}}
+
+.tool-input{width:100%;min-height:110px;padding:13px;border:1px solid #bdcbd8;border-radius:11px;font:inherit;resize:vertical}
+.tool-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.tool-result{margin-top:15px;padding:15px;border-radius:12px;background:#f2f8fc;border:1px solid var(--line)}
+.tool-result strong{color:var(--navy)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field-row label{font-weight:700;color:var(--navy)}
+.field-row select{display:block;width:100%;margin-top:6px;padding:11px;border:1px solid #bdcbd8;border-radius:9px;background:white;font:inherit}
+.score{font-size:2rem;font-weight:800;color:var(--blue)}
+@media(max-width:600px){.field-row{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">RUANG<span>DIGITAL</span> AMAN</div><nav>
+<a href="#materi">Materi</a><a href="#cek-alat">Cek Informasi</a><a href="#pindai-risiko">Pindai Risiko</a><a href="#kuis">Kuis</a><a href="#password">Password</a><a href="#etika">Etika</a>
+</nav></div></header>
+<section class="hero"><div class="hero-inner"><div><div class="eyebrow">Literasi digital untuk pelajar</div><h1>Cerdas Bermedia,<br>Bijak Berinternet.</h1><p>Kenali informasi palsu, periksa fakta sebelum membagikan, lindungi akun dengan password kuat, dan bangun kebiasaan positif di ruang digital.</p><a class="btn" href="#materi">Mulai Belajar</a></div><div class="hero-card"><div class="symbol">🛡️</div><strong>Berhenti • Periksa • Pastikan</strong><p class="small">Jangan terburu-buru percaya atau menyebarkan informasi yang belum jelas kebenarannya.</p><a class="btn secondary" href="#hoaks">Pelajari cara cek informasi</a></div></div></section>
+<main>
+<section id="materi"><div class="section-head"><h2>Jelajahi Materi</h2><p>Enam materi utama untuk menjadi pengguna internet yang lebih aman dan bertanggung jawab.</p></div>
+<div class="cards">
+<article class="card"><div class="icon">🔎</div><h3>Menghindari Hoaks</h3><p>Kenali langkah sederhana agar tidak mudah tertipu informasi palsu.</p><a href="#hoaks">Pelajari materi →</a></article>
+<article class="card"><div class="icon">🚩</div><h3>Ciri-Ciri Hoaks</h3><p>Amati judul, sumber, tanggal, bukti, dan gaya bahasa sebuah berita.</p><a href="#ciri">Pelajari materi →</a></article>
+<article class="card"><div class="icon">💡</div><h3>Literasi Digital</h3><p>Gunakan teknologi untuk belajar, berkarya, dan berkomunikasi secara sehat.</p><a href="#literasi">Pelajari materi →</a></article>
+<article class="card"><div class="icon">🔐</div><h3>Password Aman</h3><p>Pahami kebiasaan membuat dan menjaga kata sandi yang kuat.</p><a href="#password">Pelajari materi →</a></article>
+<article class="card"><div class="icon">✅</div><h3>Cek Sebelum Sebar</h3><p>Gunakan tiga langkah untuk memeriksa informasi sebelum membagikannya.</p><a href="#cek">Pelajari materi →</a></article>
+<article class="card"><div class="icon">🤝</div><h3>Etika Bermedia Sosial</h3><p>Bangun interaksi yang santun, menghargai privasi, dan tidak merugikan orang lain.</p><a href="#etika">Pelajari materi →</a></article>
+</div></section>
+<section class="content-section" id="hoaks"><div class="section-head"><h2>1. Cara Menghindari Hoaks</h2><p>Jangan langsung percaya pada informasi yang muncul di beranda atau grup percakapan.</p></div><div class="panel"><ul class="checklist"><li>Baca informasi secara utuh, jangan hanya judul atau potongan gambar.</li><li>Periksa siapa penerbit dan penulisnya serta apakah sumbernya jelas.</li><li>Bandingkan dengan pemberitaan dari media tepercaya atau kanal resmi.</li><li>Periksa tanggal dan konteks agar tidak membagikan informasi lama seolah-olah baru.</li><li>Waspadai judul provokatif, ajakan menyebarkan segera, dan klaim tanpa bukti.</li></ul><div class="tip"><b>Ingat:</b> Jika belum yakin kebenarannya, jangan teruskan. Menunda membagikan informasi lebih baik daripada ikut menyebarkan hoaks.</div><p class="small">Bacaan: <a href="https://www.komdigi.go.id/berita/sorotan-media/detail/ini-cara-mengatasi-berita-hoax-di-dunia-maya" target="_blank" rel="noopener">Komdigi — Cara mengatasi berita hoaks di dunia maya</a>.</p></div></section>
+<section class="content-section" id="ciri"><div class="section-head"><h2>2. Ciri-Ciri Berita Hoaks</h2><p>Beberapa tanda yang perlu diperiksa, bukan langsung dijadikan bukti tunggal.</p></div><div class="panel"><ul class="checklist"><li>Judul berlebihan, sensasional, atau sengaja membuat takut dan marah.</li><li>Sumber berita tidak jelas atau tidak mencantumkan penulis.</li><li>Tidak ada data, bukti, atau rujukan yang dapat diperiksa.</li><li>Foto atau video tidak sesuai konteks, dipotong, atau digunakan ulang.</li><li>Isi berita meminta pembaca segera menyebarkan tanpa verifikasi.</li><li>Informasi sulit ditemukan di sumber tepercaya lainnya.</li></ul><div class="tip">Satu tanda saja belum otomatis membuktikan hoaks. Periksa konteks dan bandingkan dengan sumber lain.</div><p class="small">Bacaan: <a href="https://dkis.cirebonkota.go.id/artikel/mengenal-lebih-jauh-tentang-hoax" target="_blank" rel="noopener">DKIS Kota Cirebon — Mengenal lebih jauh tentang hoaks</a>.</p></div></section>
+<section class="content-section" id="literasi"><div class="section-head"><h2>3. Pentingnya Literasi Digital bagi Siswa</h2><p>Literasi digital bukan hanya bisa memakai gawai, tetapi juga mampu berpikir kritis dan bertanggung jawab.</p></div><div class="panel"><div class="steps"><div class="step"><b>Belajar kritis</b><br><span class="small">Memilah informasi dan menilai keakuratan sumber.</span></div><div class="step"><b>Belajar produktif</b><br><span class="small">Memanfaatkan teknologi untuk mencari ilmu dan membuat karya.</span></div><div class="step"><b>Belajar aman</b><br><span class="small">Melindungi data pribadi dan menghargai orang lain.</span></div></div><p class="small" style="margin-top:18px">Bacaan: <a href="https://pgsd.almaata.ac.id/index.php/2026/05/12/pentingnya-literasi-digital-bagi-siswa-sekolah-dasar-di-era-modern/" target="_blank" rel="noopener">Universitas Alma Ata — Pentingnya literasi digital bagi siswa</a>.</p></div></section>
+<section class="content-section" id="password"><div class="section-head"><h2>4. Cara Membuat Password Aman</h2><p>Gunakan kata sandi yang panjang, unik, dan tidak mudah ditebak.</p></div><div class="panel"><ul class="checklist"><li>Buat password panjang, idealnya 12–16 karakter atau lebih.</li><li>Gabungkan beberapa kata yang tidak saling berkaitan; gunakan variasi karakter bila memungkinkan.</li><li>Jangan gunakan nama, tanggal lahir, nama sekolah, atau urutan angka sederhana.</li><li>Gunakan password berbeda untuk setiap akun penting.</li><li>Aktifkan autentikasi dua faktor (2FA) jika tersedia.</li><li>Jangan membagikan password atau kode OTP kepada siapa pun.</li></ul><div class="tip"><b>Contoh pola:</b> gabungkan beberapa kata acak yang mudah kamu ingat, lalu tambahkan variasi karakter. Jangan gunakan contoh password dari website ini sebagai password akun sungguhan.</div><label for="pw"><b>Simulasi pemeriksa panjang password</b></label><div class="password-tool"><input id="pw" type="password" placeholder="Ketik contoh password (jangan password asli)" autocomplete="off"><button class="btn" type="button" id="togglePw">Tampilkan</button></div><div class="meter"><span id="meterBar"></span></div><p id="pwFeedback" class="small" aria-live="polite">Masukkan contoh teks untuk melihat evaluasi panjangnya. Teks tidak dikirim atau disimpan.</p><p class="small">Bacaan: <a href="https://bif-pwt.telkomuniversity.ac.id/jangan-asal-ini-alasan-harus-memiliki-password-yang-kuat/" target="_blank" rel="noopener">Telkom University — Alasan harus memiliki password yang kuat</a>.</p></div></section>
+<section class="content-section" id="cek"><div class="section-head"><h2>5. Cek Informasi Sebelum Menyebarkan</h2><p>Pakai langkah sederhana ini setiap menerima berita yang mengejutkan.</p></div><div class="panel"><div class="steps"><div class="step"><b>Periksa sumber</b><br><span class="small">Cari tahu siapa yang menerbitkan informasi dan apakah sumbernya dapat dipercaya.</span></div><div class="step"><b>Periksa isi dan bukti</b><br><span class="small">Telusuri tanggal, konteks, data, foto, serta bukti pendukungnya.</span></div><div class="step"><b>Bandingkan dan putuskan</b><br><span class="small">Cari konfirmasi dari sumber tepercaya. Bagikan hanya jika sudah terverifikasi.</span></div></div><p class="small" style="margin-top:18px">Bacaan: <a href="https://diskominfo.acehbesarkab.go.id/berita/kategori/literasi/viral-belum-tentu-valid-kenali-3-langkah-cek-informasi-sebelum-membagikannya" target="_blank" rel="noopener">Diskominfo Aceh Besar — Viral belum tentu valid</a>.</p></div></section>
+<section class="content-section" id="etika"><div class="section-head"><h2>6. Etika Bermedia Sosial</h2><p>Jejak digital dapat bertahan lama. Pikirkan dampak sebelum mengunggah atau berkomentar.</p></div><div class="panel"><ul class="checklist"><li>Gunakan bahasa yang sopan dan hindari hinaan atau perundungan.</li><li>Hormati perbedaan pendapat tanpa menyerang pribadi.</li><li>Jangan menyebarkan data pribadi, foto, atau percakapan orang lain tanpa izin.</li><li>Hargai karya orang lain dengan mencantumkan sumber.</li><li>Jangan ikut menyebarkan rumor, ujaran kebencian, atau informasi yang belum terverifikasi.</li><li>Laporkan konten yang berbahaya melalui fitur pelaporan platform.</li></ul><div class="tip"><b>Prinsip sederhana:</b> Perlakukan orang lain di internet sebagaimana kamu ingin diperlakukan di dunia nyata.</div><p class="small">Bacaan: <a href="https://lib.ugm.ac.id/membangun-warga-digital-yang-bijak-perpustakaan-dan-arsip-ugm-bahas-etika-bermedia-sosial/" target="_blank" rel="noopener">Perpustakaan dan Arsip UGM — Etika bermedia sosial</a>.</p></div></section>
+
+<section class="content-section" id="cek-alat"><div class="section-head"><h2>Alat 1. Cek Informasi</h2><p>Latihan mengenali pesan atau tautan yang perlu diperiksa lebih lanjut.</p></div>
+<div class="panel"><h3>Periksa contoh pesan</h3><p class="small">Tempelkan contoh pesan atau alamat tautan yang ingin kamu evaluasi. Jangan masukkan password, kode OTP, nomor pribadi, atau data rahasia.</p>
+<textarea id="messageCheck" class="tool-input" placeholder="Contoh: SEGERA KLIK! Kamu memenangkan hadiah besar. Bagikan pesan ini ke 10 teman sekarang!"></textarea>
+<div class="tool-actions"><button class="btn" id="analyzeMessage">Periksa Pesan</button><button class="btn secondary" id="clearMessage" type="button">Hapus</button></div>
+<div id="messageResult" class="tool-result" aria-live="polite">Hasil pemeriksaan akan muncul di sini.</div>
+<div class="tip"><b>Catatan penting:</b> Alat ini hanya menandai pola pesan yang patut dicermati. Alat ini tidak terhubung ke database pemeriksa fakta dan tidak dapat memastikan suatu pesan benar atau hoaks. Tetap periksa sumber aslinya.</div>
+</div></section>
+
+<section class="content-section" id="pindai-risiko"><div class="section-head"><h2>Alat 2. Pindai Risiko Digital</h2><p>Evaluasi kebiasaan keamanan digital melalui empat pertanyaan sederhana.</p></div>
+<div class="panel"><h3>Seberapa siap kamu menjaga akun dan data pribadi?</h3>
+<div class="field-row">
+<label>1. Apakah password setiap akun penting berbeda?
+<select id="risk1"><option value="">Pilih jawaban</option><option value="2">Ya, berbeda</option><option value="1">Beberapa masih sama</option><option value="0">Tidak, sebagian besar sama</option></select></label>
+<label>2. Apakah verifikasi dua langkah (2FA) sudah diaktifkan?
+<select id="risk2"><option value="">Pilih jawaban</option><option value="2">Sudah</option><option value="1">Hanya di beberapa akun</option><option value="0">Belum</option></select></label>
+<label>3. Apakah kamu memeriksa pengirim sebelum membuka tautan?
+<select id="risk3"><option value="">Pilih jawaban</option><option value="2">Selalu</option><option value="1">Kadang-kadang</option><option value="0">Tidak pernah</option></select></label>
+<label>4. Apakah kamu merahasiakan kode OTP dan password?
+<select id="risk4"><option value="">Pilih jawaban</option><option value="2">Selalu</option><option value="1">Pernah hampir membagikan</option><option value="0">Pernah membagikannya</option></select></label>
+</div>
+<div class="tool-actions"><button class="btn" id="riskCheck">Lihat Hasil</button><button class="btn secondary" id="riskReset" type="button">Ulangi</button></div>
+<div id="riskResult" class="tool-result" aria-live="polite">Jawab semua pertanyaan untuk melihat evaluasi kebiasaan digitalmu.</div>
+<p class="small">Hasil ini bersifat edukatif dan bukan pemeriksaan keamanan teknis pada perangkat atau akunmu.</p>
+</div></section>
+
+<section class="content-section" id="kuis"><div class="section-head"><h2>Uji Pemahaman</h2><p>Coba jawab pertanyaan singkat berikut.</p></div><div class="panel quiz">
+<div id="quizQuestions">
+<div class="quiz-question"><h3>1. Jika menerima berita mengejutkan tanpa sumber yang jelas, apa tindakan terbaik?</h3><label><input type="radio" name="q1" value="a"> Langsung membagikannya agar orang lain tahu.</label><label><input type="radio" name="q1" value="b"> Memeriksa sumber dan membandingkan dengan informasi tepercaya.</label><label><input type="radio" name="q1" value="c"> Percaya karena banyak orang membagikannya.</label></div>
+<div class="quiz-question"><h3>2. Apa yang sebaiknya dilakukan terhadap kode OTP?</h3><label><input type="radio" name="q2" value="a"> Mengirimkannya kepada orang yang mengaku petugas.</label><label><input type="radio" name="q2" value="b"> Menuliskannya di komentar media sosial.</label><label><input type="radio" name="q2" value="c"> Menjaganya tetap rahasia.</label></div>
+<div class="quiz-question"><h3>3. Bagaimana sikap yang tepat saat berbeda pendapat di media sosial?</h3><label><input type="radio" name="q3" value="a"> Menyampaikan pendapat dengan sopan dan menghargai orang lain.</label><label><input type="radio" name="q3" value="b"> Menghina orang yang berbeda pendapat.</label><label><input type="radio" name="q3" value="c"> Menyebarkan data pribadi orang tersebut.</label></div>
+</div>
+<button class="btn" id="checkQuiz">Periksa Jawaban</button><button class="btn secondary" id="resetQuiz" type="button">Ulangi Kuis</button><div class="result" id="quizResult" aria-live="polite"></div></div></section>
+<section class="content-section" id="sumber"><div class="section-head"><h2>Sumber Bacaan</h2><p>Materi dirangkum dari enam tautan yang diberikan.</p></div><div class="panel"><ol class="source-list"><li><a href="https://www.komdigi.go.id/berita/sorotan-media/detail/ini-cara-mengatasi-berita-hoax-di-dunia-maya" target="_blank" rel="noopener">Komdigi — Cara mengatasi berita hoaks di dunia maya</a></li><li><a href="https://dkis.cirebonkota.go.id/artikel/mengenal-lebih-jauh-tentang-hoax" target="_blank" rel="noopener">DKIS Kota Cirebon — Mengenal lebih jauh tentang hoaks</a></li><li><a href="https://pgsd.almaata.ac.id/index.php/2026/05/12/pentingnya-literasi-digital-bagi-siswa-sekolah-dasar-di-era-modern/" target="_blank" rel="noopener">Universitas Alma Ata — Pentingnya literasi digital bagi siswa</a></li><li><a href="https://bif-pwt.telkomuniversity.ac.id/jangan-asal-ini-alasan-harus-memiliki-password-yang-kuat/" target="_blank" rel="noopener">Telkom University — Password yang kuat</a></li><li><a href="https://diskominfo.acehbesarkab.go.id/berita/kategori/literasi/viral-belum-tentu-valid-kenali-3-langkah-cek-informasi-sebelum-membagikannya" target="_blank" rel="noopener">Diskominfo Aceh Besar — Viral belum tentu valid</a></li><li><a href="https://lib.ugm.ac.id/membangun-warga-digital-yang-bijak-perpustakaan-dan-arsip-ugm-bahas-etika-bermedia-sosial/" target="_blank" rel="noopener">Perpustakaan dan Arsip UGM — Etika bermedia sosial</a></li></ol><p class="small">Catatan: ringkasan materi pada halaman ini merupakan bahan edukasi umum. Kunjungi sumber asli untuk membaca penjelasan lengkap.</p></div></section>
+</main>
+<footer><b>RUANG DIGITAL AMAN</b><p>Jadilah pelajar yang kritis, aman, dan bertanggung jawab di dunia digital.</p><span class="small" style="color:#b9cede">© 2026 • Media edukasi literasi digital</span></footer>
+<script>
+const pw=document.getElementById('pw'),bar=document.getElementById('meterBar'),feedback=document.getElementById('pwFeedback');
+pw.addEventListener('input',()=>{const n=pw.value.length;const pct=Math.min(100,n/16*100);bar.style.width=pct+'%';feedback.textContent=n===0?'Masukkan contoh teks untuk melihat evaluasi panjangnya. Teks tidak dikirim atau disimpan.':n<12?'Masih pendek. Coba gunakan frasa yang lebih panjang dan unik.':n<16?'Sudah cukup panjang, tetapi pastikan tetap unik dan sulit ditebak.':'Panjang sudah baik. Pastikan tidak digunakan pada akun lain.';});
+document.getElementById('togglePw').addEventListener('click',()=>{pw.type=pw.type==='password'?'text':'password';document.getElementById('togglePw').textContent=pw.type==='password'?'Tampilkan':'Sembunyikan';});
+document.getElementById('checkQuiz').addEventListener('click',()=>{const chosen=document.querySelector('input[name="q"]:checked');const out=document.getElementById('quizResult');if(!chosen){out.textContent='Pilih salah satu jawaban terlebih dahulu.';return;}out.textContent=chosen.value==='b'?'Benar! Periksa sumber dan bandingkan informasi sebelum membagikannya.':'Belum tepat. Pilihan terbaik adalah memeriksa sumber dan membandingkan dengan informasi tepercaya.';});
+
+// Pemeriksa pola pesan: indikasi awal, bukan penentu kebenaran.
+document.getElementById('analyzeMessage').addEventListener('click',()=>{
+ const text=document.getElementById('messageCheck').value.trim();
+ const out=document.getElementById('messageResult');
+ if(!text){out.textContent='Masukkan contoh pesan terlebih dahulu.';return;}
+ const patterns=[
+  {re:/segera|buruan|sekarang juga|wajib dibagikan/i,label:'Ada tekanan untuk bertindak cepat'},
+  {re:/menang|hadiah|gratis|undian|transfer uang/i,label:'Ada klaim hadiah atau permintaan terkait uang'},
+  {re:/bagikan ke|sebarkan ke|forward|teruskan ke/i,label:'Ada ajakan menyebarkan pesan'},
+  {re:/klik di sini|bit\\.ly|tinyurl|wa\\.me|http/i,label:'Ada tautan yang perlu diperiksa alamat dan tujuannya'},
+  {re:/100% aman|pasti benar|dijamin|rahasia pemerintah/i,label:'Ada klaim mutlak atau sensasional'}
+ ];
+ const found=patterns.filter(x=>x.re.test(text)).map(x=>x.label);
+ out.innerHTML='';
+ const title=document.createElement('strong');
+ title.textContent=found.length?'Perlu diperiksa lebih lanjut':'Belum ditemukan pola umum yang ditandai';
+ out.appendChild(title);
+ const para=document.createElement('p');
+ para.textContent=found.length?'Pola yang terdeteksi:':'Tidak ada pola umum dari daftar pemeriksaan sederhana ini. Namun, pesan tetap belum tentu benar.';
+ out.appendChild(para);
+ if(found.length){const ul=document.createElement('ul');found.forEach(item=>{const li=document.createElement('li');li.textContent=item;ul.appendChild(li)});out.appendChild(ul);}
+ const note=document.createElement('p');note.className='small';note.textContent='Langkah berikutnya: cari sumber asli, periksa tanggal dan konteks, lalu bandingkan dengan sumber tepercaya.';out.appendChild(note);
+});
+document.getElementById('clearMessage').addEventListener('click',()=>{document.getElementById('messageCheck').value='';document.getElementById('messageResult').textContent='Hasil pemeriksaan akan muncul di sini.';});
+
+// Pindai kebiasaan digital.
+document.getElementById('riskCheck').addEventListener('click',()=>{
+ const ids=['risk1','risk2','risk3','risk4'];
+ const vals=ids.map(id=>document.getElementById(id).value);
+ const out=document.getElementById('riskResult');
+ if(vals.some(v=>v==='')){out.textContent='Lengkapi keempat pertanyaan terlebih dahulu.';return;}
+ const score=vals.reduce((a,v)=>a+Number(v),0);
+ let level,advice;
+ if(score>=7){level='Kebiasaanmu sudah cukup baik';advice='Pertahankan kebiasaan ini. Tetap waspada terhadap tautan, pesan, dan permintaan data yang mencurigakan.';}
+ else if(score>=4){level='Masih ada kebiasaan yang perlu diperkuat';advice='Mulailah menggunakan password berbeda, aktifkan 2FA, dan biasakan memeriksa pengirim tautan.';}
+ else{level='Perlu meningkatkan perlindungan akun';advice='Prioritaskan mengganti password yang digunakan berulang, aktifkan 2FA, dan jangan pernah membagikan OTP.';}
+ out.innerHTML='<div class="score">'+score+'/8</div><strong>'+level+'</strong><p>'+advice+'</p><p class="small">Skor ini adalah panduan belajar, bukan penilaian keamanan akun secara teknis.</p>';
+});
+document.getElementById('riskReset').addEventListener('click',()=>{['risk1','risk2','risk3','risk4'].forEach(id=>document.getElementById(id).value='');document.getElementById('riskResult').textContent='Jawab semua pertanyaan untuk melihat evaluasi kebiasaan digitalmu.';});
+
+// Kuis tiga pertanyaan.
+document.getElementById('checkQuiz').addEventListener('click',()=>{
+ const answers={q1:'b',q2:'c',q3:'a'};let score=0,answered=0;
+ Object.entries(answers).forEach(([name,correct])=>{const selected=document.querySelector('input[name="'+name+'"]:checked');if(selected){answered++;if(selected.value===correct)score++;}});
+ const out=document.getElementById('quizResult');
+ if(answered<3){out.textContent='Jawab semua 3 pertanyaan terlebih dahulu.';return;}
+ out.textContent='Nilaimu: '+score+'/3. '+(score===3?'Hebat! Kamu memahami dasar keamanan dan etika digital.':score===2?'Bagus! Pelajari kembali materi yang belum tepat.':'Ayo baca kembali materi, lalu coba lagi.');
+});
+document.getElementById('resetQuiz').addEventListener('click',()=>{document.querySelectorAll('#quizQuestions input[type="radio"]').forEach(el=>el.checked=false);document.getElementById('quizResult').textContent='';});
+
+</script>
+</body></html>
