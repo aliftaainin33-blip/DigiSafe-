@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiSafe — Jelajahi Dunia Digital dengan Lebih Cerdas</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#0f172a',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(37, 99, 235, 0.08)',
+                        'card': '0 4px 20px -2px rgba(15, 23, 42, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F8FAFC;
+            color: #0F172A;
+        }
+        .hero-shield-glow {
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.16) 0%, rgba(239, 246, 255, 0) 70%);
+        }
+        .fade-in {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-100 selection:text-brand-700">
+
+    <!-- ==================== 1. NAVBAR (Sesuai Lampiran 1) ==================== -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 py-3.5">
+                <!-- Logo & Mobile Menu Trigger -->
+                <div class="flex items-center gap-3">
+                    <a href="#beranda" class="flex items-center gap-2.5 group">
+                        <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-md shadow-brand-500/25 group-hover:scale-105 transition-transform">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-display font-extrabold text-xl tracking-tight text-slate-900">
+                            Digi<span class="text-brand-600">Safe</span>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-600">
+                    <a href="#beranda" class="hover:text-brand-600 transition-colors">Beranda</a>
+                    <a href="#fitur" class="hover:text-brand-600 transition-colors">Fitur</a>
+                    <a href="#cek-informasi" class="hover:text-brand-600 transition-colors">Cek Informasi</a>
+                    <a href="#pindai-risiko" class="hover:text-brand-600 transition-colors">Pindai Risiko</a>
+                    <a href="#kuis" class="hover:text-brand-600 transition-colors">Kuis Digital</a>
+                    <a href="#edukasi" class="hover:text-brand-600 transition-colors">Edukasi & Referensi</a>
+                </nav>
+
+                <!-- Action Button & Mobile Toggle -->
+                <div class="flex items-center gap-3">
+                    <button id="btnProfileModal" onclick="openProfileModal()" class="bg-slate-900 hover:bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all shadow-sm flex items-center gap-2">
+                        <i data-lucide="user-circle" class="w-4 h-4"></i>
+                        <span id="navUserLabel">Masuk</span>
+                    </button>
+                    <button onclick="toggleMobileMenu()" aria-label="Buka Menu" class="lg:hidden p-2.5 rounded-xl bg-brand-50 text-brand-600 hover:bg-brand-100 transition-colors">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-5 space-y-2 shadow-lg">
+            <a href="#beranda" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Beranda</a>
+            <a href="#fitur" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Fitur Utama</a>
+            <a href="#cek-informasi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Cek Informasi (Hoax & Scam)</a>
+            <a href="#pindai-risiko" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Pindai Risiko & Password</a>
+            <a href="#kuis" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Kuis Keamanan Digital</a>
+            <a href="#edukasi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">6 Materi Edukasi & Referensi</a>
+        </div>
+    </header>
+
+    <!-- ==================== 2. HERO SECTION (Lampiran 1 Gambar 1) ==================== -->
+    <section id="beranda" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-24 bg-gradient-to-b from-white via-brand-50/40 to-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Column -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/80 text-brand-700 text-xs font-bold tracking-wider uppercase">
+                        <span class="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></span>
+                        RUANG DIGITAL LEBIH AMAN • KARYA MTsN 1 LAMONGAN
+                    </div>
+
+                    <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-[1.12] tracking-tight">
+                        Jelajahi dunia digital dengan <span class="text-brand-600">lebih cerdas.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
+                        Kenali informasi mencurigakan, pahami risiko digital, dan latih kebiasaan aman saat menggunakan internet bersama platform edukasi <strong>DigiSafe</strong>.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#fitur" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-7 py-3.5 rounded-2xl shadow-lg shadow-brand-600/25 transition-all hover:-translate-y-0.5">
+                            <span>Jelajahi fitur</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#cek-informasi" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-semibold px-6 py-3.5 rounded-2xl border border-slate-200 shadow-sm transition-all">
+                            <i data-lucide="search-check" class="w-4 h-4 text-brand-600"></i>
+                            <span>Coba Cek Pesan</span>
+                        </a>
+                    </div>
+
+                    <!-- Highlight Temuan Riset MTsN 1 Lamongan -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200/80 max-w-xl">
+                        <div>
+                            <div class="font-display font-extrabold text-2xl text-slate-900">4,35<span class="text-sm font-semibold text-slate-400">/5</span></div>
+                            <div class="text-xs text-slate-500 mt-0.5">Skor Kelayakan Uji Coba</div>
+                        </div>
+                        <div>
+                            <div class="font-display font-extrabold text-2xl text-brand-600">60%</div>
+                            <div class="text-xs text-slate-500 mt-0.5">Siswa Butuh Edukasi Sandi Unik</div>
+                        </div>
+                        <div>
+                            <div class="font-display font-extrabold text-2xl text-slate-900">6 Pilar</div>
+                            <div class="text-xs text-slate-500 mt-0.5">Literasi & Referensi Resmi</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual Shield Card sesuai Lampiran 1 Gambar 1 -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-3xl bg-brand-50/90 border border-brand-100 p-8 sm:p-12 flex flex-col items-center justify-center shadow-soft hero-shield-glow">
+                        <!-- Floating mini badges -->
+                        <div class="absolute top-5 left-5 bg-white/95 backdrop-blur px-3.5 py-2 rounded-2xl shadow-card border border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-700">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                            Anti-Hoaks & Phishing
+                        </div>
+                        <div class="absolute bottom-5 right-5 bg-white/95 backdrop-blur px-3.5 py-2 rounded-2xl shadow-card border border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-700">
+                            <i data-lucide="lock" class="w-3.5 h-3.5 text-brand-600"></i>
+                            Keamanan Data & OTP
+                        </div>
+
+                        <!-- Central Blue Shield Icon (Persis Lampiran 1 Gambar 1) -->
+                        <div class="w-44 h-48 sm:w-52 sm:h-56 flex items-center justify-center my-4">
+                            <svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-xl" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="shieldGrad" x1="20" y1="10" x2="180" y2="210" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#60A5FA"/>
+                                        <stop offset="50%" stop-color="#3B82F6"/>
+                                        <stop offset="100%" stop-color="#2563EB"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M100 12L176 44V104C176 154.5 143.6 198.4 100 212C56.4 198.4 24 154.5 24 104V44L100 12Z" fill="url(#shieldGrad)"/>
+                                <path d="M74 112L92 130L130 90" stroke="white" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+
+                        <p class="text-center text-xs font-medium text-brand-700/80 mt-2">
+                            Digital Information Verification and Safety
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. FITUR DIGISAFE (Lampiran 1 Gambar 2) ==================== -->
+    <section id="fitur" class="py-20 bg-white border-y border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div>
+                    <span class="text-xs font-bold tracking-wider uppercase text-brand-600">FITUR TERINTEGRASI</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-1">
+                        Bekal sederhana untuk <span class="text-brand-600">lebih aman.</span>
+                    </h2>
+                </div>
+                <p class="text-slate-600 max-w-md text-sm sm:text-base">
+                    Gunakan alat latihan berikut untuk membangun kebiasaan digital yang bijak, kritis, dan bertanggung jawab.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1: Cek Informasi -->
+                <a href="#cek-informasi" class="group rounded-3xl bg-slate-50/70 hover:bg-white p-7 border border-slate-200/80 hover:border-brand-300 shadow-card hover:shadow-soft transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                            <i data-lucide="search" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Cek Informasi</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                            Pelajari tanda pesan yang berpotensi menyesatkan, hoaks berantai, atau tautan phishing yang mencurigakan.
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+                        <span>Mulai cek</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Card 2: Pindai Risiko -->
+                <a href="#pindai-risiko" class="group rounded-3xl bg-slate-50/70 hover:bg-white p-7 border border-slate-200/80 hover:border-brand-300 shadow-card hover:shadow-soft transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                            <i data-lucide="activity" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Pindai Risiko</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                            Nilai kebiasaan keamanan digital melalui pertanyaan sederhana serta uji kekuatan kata sandi akunmu.
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+                        <span>Mulai pindai</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Card 3: Kuis Digital -->
+                <a href="#kuis" class="group rounded-3xl bg-slate-50/70 hover:bg-white p-7 border border-slate-200/80 hover:border-brand-300 shadow-card hover:shadow-soft transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Kuis Digital</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                            Uji pemahaman tentang kode OTP, kata sandi kuat, ciri hoaks, etika bermedia sosial, dan privasi online.
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+                        <span>Coba kuis</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Card 4: Pusat Edukasi (Digi School) -->
+                <a href="#edukasi" class="group rounded-3xl bg-slate-50/70 hover:bg-white p-7 border border-slate-200/80 hover:border-brand-300 shadow-card hover:shadow-soft transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                            <i data-lucide="book-open-check" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Pusat Edukasi</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                            Pelajari 6 panduan literasi digital dari Komdigi, DKIS Cirebon, Alma Ata, Telkom Univ, Aceh Besar, dan UGM.
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+                        <span>Baca materi</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. FITUR PERIKSA INFORMASI (Lampiran 1 Gambar 3) ==================== -->
+    <section id="cek-informasi" class="py-20 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold uppercase tracking-wider mb-3">
+                    INFOCHECK & THREATSCAN
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900">
+                    Periksa sebelum <span class="text-brand-600">percaya.</span>
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">
+                    Tempelkan teks pesan berantai, berita viral, atau tautan mencurigakan untuk mendeteksi tanda bahaya hoaks dan penipuan.
+                </p>
+            </div>
+
+            <!-- Main Card sesuai Lampiran 1 Gambar 3 -->
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-soft border border-slate-200/80">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <label for="messageInput" class="block text-sm font-bold text-slate-800">
+                        Masukkan contoh pesan atau tautan
+                    </label>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button type="button" onclick="fillSample('phishing')" class="text-xs font-medium px-2.5 py-1 rounded-lg bg-rose-50 text-rose-700 hover:bg-rose-100 transition-colors">
+                            Contoh Phishing Hadiah
+                        </button>
+                        <button type="button" onclick="fillSample('hoax')" class="text-xs font-medium px-2.5 py-1 rounded-lg bg-amber-50 text-amber-700 hover:bg-amber-100 transition-colors">
+                            Contoh Hoaks Berantai
+                        </button>
+                        <button type="button" onclick="fillSample('valid')" class="text-xs font-medium px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">
+                            Contoh Info Edukatif
+                        </button>
+                    </div>
+                </div>
+
+                <textarea id="messageInput" rows="4"
+                    class="w-full rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 p-4 text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
+                    placeholder="Contoh: Selamat! Kamu menang hadiah. Klik tautan ini..."></textarea>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-4">
+                    <p class="text-xs text-slate-500 flex items-center gap-1.5">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-amber-500 shrink-0"></i>
+                        <span>Jangan masukkan kata sandi atau OTP asli</span>
+                    </p>
+                    <div class="flex items-center gap-2.5">
+                        <button type="button" onclick="clearMessage()" class="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 transition-colors">
+                            Reset
+                        </button>
+                        <button type="button" onclick="analyzeMessage()" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-md shadow-brand-600/20 transition-all">
+                            <i data-lucide="scan-search" class="w-4 h-4"></i>
+                            <span>Periksa pesan</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hasil Analisis Dinamis -->
+                <div id="analysisResult" class="hidden mt-8 pt-7 border-t border-slate-100 fade-in">
+                    <!-- Diisi lewat JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. PINDAI RISIKO & CEK PASSWORD (Lampiran 1 Gambar 4) ==================== -->
+    <section id="pindai-risiko" class="py-20 bg-white border-y border-slate-200/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold uppercase tracking-wider mb-3">
+                    EVALUASI KEBIASAAN DIGITAL
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900">
+                    Seberapa siap kamu <span class="text-brand-600">menjaga diri?</span>
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">
+                    Lakukan pemindaian mandiri terhadap kebiasaan keamanan akunmu dan uji kekuatan kata sandi agar terhindar dari peretasan.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Kolom Kiri: Self-Assessment 5 Pertanyaan (Lampiran 1 Gambar 4) -->
+                <div class="lg:col-span-7 bg-slate-50/70 rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-card">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center">
+                            <i data-lucide="clipboard-check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg text-slate-900">Cek Kesiapan Literasi Digital</h3>
+                            <p class="text-xs text-slate-500">Jawab jujur sesuai kebiasaanmu sehari-hari</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-800 mb-1.5">1. Apakah kata sandi tiap akun penting berbeda?</label>
+                            <select id="qRisk1" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none">
+                                <option value="">Pilih jawaban</option>
+                                <option value="2">Ya, selalu berbeda untuk setiap akun penting</option>
+                                <option value="1">Sebagian berbeda, sebagian masih sama</option>
+                                <option value="0">Tidak, semua akun memakai kata sandi yang sama</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-800 mb-1.5">2. Apakah verifikasi dua langkah (2FA) sudah diaktifkan?</label>
+                            <select id="qRisk2" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none">
+                                <option value="">Pilih jawaban</option>
+                                <option value="2">Ya, sudah aktif di email & media sosial utama</option>
+                                <option value="1">Baru di beberapa akun saja</option>
+                                <option value="0">Belum diaktifkan sama sekali</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-800 mb-1.5">3. Apakah kamu memeriksa pengirim sebelum membuka tautan?</label>
+                            <select id="qRisk3" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none">
+                                <option value="">Pilih jawaban</option>
+                                <option value="2">Selalu periksa alamat domain dan pengirimnya dulu</option>
+                                <option value="1">Kadang-kadang jika terlihat mencurigakan</option>
+                                <option value="0">Langsung klik karena penasaran atau terburu-buru</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-800 mb-1.5">4. Apakah kamu merahasiakan kode OTP dan PIN pribadi?</label>
+                            <select id="qRisk4" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none">
+                                <option value="">Pilih jawaban</option>
+                                <option value="2">Ya, tidak pernah diberikan ke siapa pun termasuk teman/admin</option>
+                                <option value="1">Pernah memberikan hanya kepada orang terdekat</option>
+                                <option value="0">Pernah membagikan saat diminta lewat pesan/telepon</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-800 mb-1.5">5. Apakah kamu memeriksa kebenaran berita & menjaga etika sebelum berkomentar/berbagi?</label>
+                            <select id="qRisk5" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none">
+                                <option value="">Pilih jawaban</option>
+                                <option value="2">Selalu saring sebelum sharing & berbahasa sopan</option>
+                                <option value="1">Kadang langsung meneruskan info dari grup keluarga/teman</option>
+                                <option value="0">Sering langsung bagikan berita viral tanpa cek fakta</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="calculateRiskScore()" class="mt-6 w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 rounded-xl shadow-md shadow-brand-600/20 transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="shield" class="w-4 h-4"></i>
+                        <span>Hitung Skor Kesiapan Digital</span>
+                    </button>
+
+                    <!-- Hasil Pindai Risiko -->
+                    <div id="riskScoreOutput" class="hidden mt-6 p-5 rounded-2xl bg-white border border-slate-200 fade-in"></div>
+                </div>
+
+                <!-- Kolom Kanan: Uji Kekuatan Password (Referensi Telkom University) -->
+                <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-soft">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-50 text-brand-600 flex items-center justify-center">
+                            <i data-lucide="key-round" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg text-slate-900">Simulator Kata Sandi Aman</h3>
+                            <p class="text-xs text-slate-500">Berbasis panduan Informatika Telkom University</p>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4 bg-brand-50/70 p-3.5 rounded-xl border border-brand-100">
+                        <strong>Fakta Riset MTsN 1 Lamongan:</strong> 60% siswa masih menggunakan kata sandi yang sama untuk semua akun. Uji simulasi kata sandi di bawah ini (jangan masukkan password aslimu).
+                    </p>
+
+                    <div class="relative mb-3">
+                        <input type="text" id="pwdTester" oninput="evaluatePassword()" placeholder="Ketik contoh kata sandi simulasi..."
+                            class="w-full rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-brand-500 px-4 py-3 pr-24 text-sm text-slate-800 outline-none">
+                        <button type="button" onclick="generateStrongPassword()" class="absolute right-2 top-1/2 -translate-y-1/2 text-xs font-semibold bg-brand-100 hover:bg-brand-200 text-brand-700 px-3 py-1.5 rounded-lg transition-colors">
+                            Buat Acak
+                        </button>
+                    </div>
+
+                    <!-- Strength Meter Bar -->
+                    <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden mb-2">
+                        <div id="pwdBar" class="h-full w-0 bg-slate-300 transition-all duration-300 rounded-full"></div>
+                    </div>
+                    <div class="flex justify-between text-xs font-semibold mb-4">
+                        <span class="text-slate-500">Kekuatan Sandi:</span>
+                        <span id="pwdLabel" class="text-slate-600">Belum diuji</span>
+                    </div>
+
+                    <!-- Checklist Kriteria -->
+                    <ul class="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-4">
+                        <li id="chkLen" class="flex items-center gap-2">
+                            <i data-lucide="circle" class="w-3.5 h-3.5 text-slate-300"></i>
+                            <span>Minimal 12 karakter (semakin panjang semakin kuat)</span>
+                        </li>
+                        <li id="chkUpper" class="flex items-center gap-2">
+                            <i data-lucide="circle" class="w-3.5 h-3.5 text-slate-300"></i>
+                            <span>Mengandung huruf kapital (A-Z) & huruf kecil (a-z)</span>
+                        </li>
+                        <li id="chkNum" class="flex items-center gap-2">
+                            <i data-lucide="circle" class="w-3.5 h-3.5 text-slate-300"></i>
+                            <span>Mengandung angka (0-9)</span>
+                        </li>
+                        <li id="chkSym" class="flex items-center gap-2">
+                            <i data-lucide="circle" class="w-3.5 h-3.5 text-slate-300"></i>
+                            <span>Mengandung simbol unik (!@#$%^&*)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. KUIS KEAMANAN DIGITAL (Lampiran 1 Gambar 5) ==================== -->
+    <section id="kuis" class="py-20 bg-slate-50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <span class="text-xs font-bold tracking-wider uppercase text-brand-600">UJI PEMAHAMAN</span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-1">
+                    Kuis keamanan <span class="text-brand-600">digital.</span>
+                </h2>
+            </div>
+
+            <!-- Quiz Container persis Lampiran 1 Gambar 5 -->
+            <div id="quizCard" class="bg-white rounded-3xl p-6 sm:p-10 shadow-soft border border-slate-200/80">
+                <!-- Progress Header -->
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-500 mb-3">
+                    <span id="quizProgressText">Pertanyaan 1 dari 6</span>
+                    <span id="quizScoreBadge" class="text-brand-600">Skor: 0</span>
+                </div>
+                <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden mb-7">
+                    <div id="quizProgressBar" class="h-full bg-brand-600 transition-all duration-300" style="width: 16.66%"></div>
+                </div>
+
+                <!-- Question -->
+                <h3 id="quizQuestion" class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-6 leading-snug">
+                    Apa yang dilakukan jika seseorang meminta kode OTP?
+                </h3>
+
+                <!-- Options -->
+                <div id="quizOptions" class="space-y-3 mb-6">
+                    <!-- Rendered dynamically -->
+                </div>
+
+                <!-- Feedback Explanation -->
+                <div id="quizFeedback" class="hidden mb-6 p-4 rounded-2xl text-sm leading-relaxed fade-in"></div>
+
+                <!-- Action Button -->
+                <div class="flex items-center justify-between pt-2">
+                    <span class="text-xs text-slate-400">Pilih satu jawaban paling tepat</span>
+                    <button id="quizNextBtn" type="button" onclick="handleQuizNext()" disabled
+                        class="inline-flex items-center gap-2 bg-brand-600 disabled:bg-slate-300 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-xl transition-all">
+                        <span id="quizNextLabel">Periksa Jawaban</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 7. PUSAT EDUKASI & 6 REFERENSI RESMI ==================== -->
+    <section id="edukasi" class="py-20 bg-white border-t border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-12">
+                <span class="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold uppercase tracking-wider mb-3">
+                    DIGI SCHOOL • 6 PILAR LITERASI DIGITAL
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900">
+                    Materi Edukasi & <span class="text-brand-600">Sumber Referensi Terpercaya.</span>
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+                    Pelajari enam kompetensi utama literasi digital remaja yang disusun berdasarkan panduan kementerian, pemerintah daerah, dan perguruan tinggi di Indonesia.
+                </p>
+            </div>
+
+            <!-- Grid 6 Topik Edukasi & Link Referensi -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+                
+                <!-- Topik 1: Cara Menghindari Hoax -->
+                <article class="rounded-3xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-brand-300 p-7 shadow-card hover:shadow-soft transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-9 h-9 rounded-xl bg-brand-600 text-white font-display font-bold text-sm flex items-center justify-center">01</span>
+                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-50 text-brand-700">Komdigi RI</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-3">
+                            Cara Menghindari Hoax di Dunia Maya
+                        </h3>
+                        <ul class="text-sm text-slate-600 space-y-2 mb-6 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+                                <span>Hati-hati dengan judul berita yang provokatif dan sensasional.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+                                <span>Cermati alamat situs resmi dan pastikan bukan blog anonim.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600 shrink-0 mt-0.5"></i>
+                                <span>Periksa keaslian foto/video dan ikut serta dalam komunitas anti-hoaks.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://www.komdigi.go.id/berita/sorotan-media/detail/ini-cara-mengatasi-berita-hoax-di-dunia-maya" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-between w-full px-4 py-3 rounded-xl bg-white hover:bg-brand-600 text-slate-800 hover:text-white border border-slate-200 hover:border-brand-600 text-xs font-bold transition-all group">
+                        <span>Baca Sumber Referensi Asli</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-brand-600 group-hover:text-white"></i>
+                    </a>
+                </article>
+
+                <!-- Topik 2: Ciri Berita Hoax -->
+                <article class="rounded-3xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-brand-300 p-7 shadow-card hover:shadow-soft transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-9 h-9 rounded-xl bg-brand-600 text-white font-display font-bold text-sm flex items-center justify-center">02</span>
+                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-50 text-amber-700">DKIS Kota Cirebon</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-3">
+                            Mengenal Lebih Jauh Ciri Berita Hoax
+                        </h3>
+                        <ul class="text-sm text-slate-600 space-y-2 mb-6 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-500 shrink-0 mt-0.5"></i>
+                                <span>Memicu kecemasan, kemarahan, atau kebencian pembaca secara emosional.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-500 shrink-0 mt-0.5"></i>
+                                <span>Sumber informasi tidak jelas, mencatut nama tokoh/lembaga tanpa bukti.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-500 shrink-0 mt-0.5"></i>
+                                <span>Biasanya ditutup dengan ajakan "Sebarkan ke semua grup agar viral".</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://dkis.cirebonkota.go.id/artikel/mengenal-lebih-jauh-tentang-hoax" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-between w-full px-4 py-3 rounded-xl bg-white hover:bg-brand-600 text-slate-800 hover:text-white border border-slate-200 hover:border-brand-600 text-xs font-bold transition-all group">
+                        <span>Baca Sumber Referensi Asli</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-brand-600 group-hover:text-white"></i>
+                    </a>
+                </article>
+
+                <!-- Topik 3: Pentingnya Literasi Digital bagi Siswa -->
+                <article class="rounded-3xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-brand-300 p-7 shadow-card hover:shadow-soft transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-9 h-9 rounded-xl bg-brand-600 text-white font-display font-bold text-sm flex items-center justify-center">03</span>
+                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700">PGSD Alma Ata</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-3">
+                            Pentingnya Literasi Digital bagi Siswa di Era Modern
+                        </h3>
+                        <ul class="text-sm text-slate-600 space-y-2 mb-6 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="graduation-cap" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                                <span>Melatih kemampuan berpikir kritis dan pemecahan masalah sejak bangku sekolah.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="graduation-cap" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                                <span>Membantu pelajar menyaring sumber belajar daring yang valid dan edukatif.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="graduation-cap" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                                <span>Melindungi siswa dari dampak negatif kecanduan gawai dan konten tidak layak.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://pgsd.almaata.ac.id/index.php/2026/05/12/pentingnya-literasi-digital-bagi-siswa-sekolah-dasar-di-era-modern/" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-between w-full px-4 py-3 rounded-xl bg-white hover:bg-brand-600 text-slate-800 hover:text-white border border-slate-200 hover:border-brand-600 text-xs font-bold transition-all group">
+                        <span>Baca Sumber Referensi Asli</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-brand-600 group-hover:text-white"></i>
+                    </a>
+                </article>
+
+                <!-- Topik 4: Cara Membuat Password Aman -->
+                <article class="rounded-3xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-brand-300 p-7 shadow-card hover:shadow-soft transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-9 h-9 rounded-xl bg-brand-600 text-white font-display font-bold text-sm flex items-center justify-center">04</span>
+                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700">Telkom University</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-3">
+                            Alasan & Cara Membuat Password yang Kuat
+                        </h3>
+                        <ul class="text-sm text-slate-600 space-y-2 mb-6 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="key" class="w-4 h-4 text-indigo-600 shrink-0 mt-0.5"></i>
+                                <span>Hindari memakai satu kata sandi untuk semua akun media sosial dan email.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="key" class="w-4 h-4 text-indigo-600 shrink-0 mt-0.5"></i>
+                                <span>Kombinasikan huruf besar, kecil, angka, simbol, dan hindari tanggal lahir.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="key" class="w-4 h-4 text-indigo-600 shrink-0 mt-0.5"></i>
+                                <span>Aktifkan Two-Factor Authentication (2FA) sebagai lapisan pelindung ganda.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://bif-pwt.telkomuniversity.ac.id/jangan-asal-ini-alasan-harus-memiliki-password-yang-kuat/" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-between w-full px-4 py-3 rounded-xl bg-white hover:bg-brand-600 text-slate-800 hover:text-white border border-slate-200 hover:border-brand-600 text-xs font-bold transition-all group">
+                        <span>Baca Sumber Referensi Asli</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-brand-600 group-hover:text-white"></i>
+                    </a>
+                </article>
+
+                <!-- Topik 5: Cek Informasi Sebelum Menyebarkan -->
+                <article class="rounded-3xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-brand-300 p-7 shadow-card hover:shadow-soft transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-9 h-9 rounded-xl bg-brand-600 text-white font-display font-bold text-sm flex items-center justify-center">05</span>
+                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-cyan-50 text-cyan-700">Diskominfo Aceh Besar</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-3">
+                            Viral Belum Tentu Valid: 3 Langkah Cek Informasi
+                        </h3>
+                        <ul class="text-sm text-slate-600 space-y-2 mb-6 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-square" class="w-4 h-4 text-cyan-600 shrink-0 mt-0.5"></i>
+                                <span><strong>Langkah 1:</strong> Tahan jari, jangan langsung menekan tombol teruskan (forward).</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-square" class="w-4 h-4 text-cyan-600 shrink-0 mt-0.5"></i>
+                                <span><strong>Langkah 2:</strong> Telusuri kebenaran fakta melalui kanal resmi atau media terverifikasi.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-square" class="w-4 h-4 text-cyan-600 shrink-0 mt-0.5"></i>
+                                <span><strong>Langkah 3:</strong> Bandingkan konteks waktu dan lokasi kejadian sebelum membagikan.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://diskominfo.acehbesarkab.go.id/berita/kategori/literasi/viral-belum-tentu-valid-kenali-3-langkah-cek-informasi-sebelum-membagikannya" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-between w-full px-4 py-3 rounded-xl bg-white hover:bg-brand-600 text-slate-800 hover:text-white border border-slate-200 hover:border-brand-600 text-xs font-bold transition-all group">
+                        <span>Baca Sumber Referensi Asli</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-brand-600 group-hover:text-white"></i>
+                    </a>
+                </article>
+
+                <!-- Topik 6: Etika Bermedia Sosial -->
+                <article class="rounded-3xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-brand-300 p-7 shadow-card hover:shadow-soft transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-9 h-9 rounded-xl bg-brand-600 text-white font-display font-bold text-sm flex items-center justify-center">06</span>
+                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-purple-50 text-purple-700">Perpustakaan & Arsip UGM</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-3">
+                            Membangun Warga Digital Bijak & Etika Bermedsos
+                        </h3>
+                        <ul class="text-sm text-slate-600 space-y-2 mb-6 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="heart-handshake" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>
+                                <span>Gunakan bahasa yang santun dan hindari perundungan siber (cyberbullying).</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="heart-handshake" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>
+                                <span>Minta izin sebelum mengunggah foto, video, atau data pribadi orang lain.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="heart-handshake" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>
+                                <span>Bangun jejak digital positif demi masa depan akademik dan karier.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://lib.ugm.ac.id/membangun-warga-digital-yang-bijak-perpustakaan-dan-arsip-ugm-bahas-etika-bermedia-sosial/" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-between w-full px-4 py-3 rounded-xl bg-white hover:bg-brand-600 text-slate-800 hover:text-white border border-slate-200 hover:border-brand-600 text-xs font-bold transition-all group">
+                        <span>Baca Sumber Referensi Asli</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-brand-600 group-hover:text-white"></i>
+                    </a>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 8. FOOTER (Identitas Karya Ilmiah MTsN 1 Lamongan) ==================== -->
+    <footer class="bg-slate-900 text-slate-300 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+                <div class="md:col-span-6 space-y-4">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-display font-extrabold text-xl text-white">DigiSafe</span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed max-w-lg">
+                        <strong class="text-slate-200">DIGISAFE: Inovasi Platform Verifikasi Informasi dan Deteksi Ancaman Digital sebagai Upaya Meningkatkan Literasi Digital Remaja.</strong>
+                    </p>
+                    <p class="text-xs text-slate-400">
+                        Disusun untuk Lomba Karya Tulis Ilmiah <strong>13th NCC (National Creativity Competition) 2026–2027</strong> Tingkat SMP/MTs Sederajat Seluruh Indonesia.
+                    </p>
+                </div>
+
+                <div class="md:col-span-3 space-y-2.5 text-sm">
+                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider">Tim Peneliti</h4>
+                    <p class="text-slate-300 font-medium">1. Mardhia Ama Fijarul Jannah</p>
+                    <p class="text-slate-300 font-medium">2. Syaqina Natswa Aquilla Zivarra</p>
+                    <p class="text-xs text-slate-400 pt-1">Pembimbing: Firda Ama Zulfa, M.Pd.</p>
+                </div>
+
+                <div class="md:col-span-3 space-y-2.5 text-sm">
+                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider">Asal Madrasah</h4>
+                    <p class="text-slate-300 font-medium">MTs Negeri 1 Lamongan</p>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Jl. Raya Plaosan No. 11 Plaosan, Babat, Kabupaten Lamongan, Jawa Timur.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>&copy; 2026–2027 DigiSafe — MTsN 1 Lamongan. Hak Cipta Karya Inovasi Pelajar.</p>
+                <div class="flex items-center gap-5">
+                    <a href="#beranda" class="hover:text-slate-300 transition-colors">Beranda</a>
+                    <a href="#cek-informasi" class="hover:text-slate-300 transition-colors">Cek Informasi</a>
+                    <a href="#pindai-risiko" class="hover:text-slate-300 transition-colors">Pindai Risiko</a>
+                    <a href="#kuis" class="hover:text-slate-300 transition-colors">Kuis</a>
+                    <a href="#edukasi" class="hover:text-slate-300 transition-colors">Referensi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODAL PROFIL SISWA / MASUK ==================== -->
+    <div id="profileModal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 fade-in">
+            <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center">
+                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-slate-900">Profil Belajar Siswa</h3>
+                </div>
+                <button onclick="closeProfileModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                Masukkan nama panggilan dan sekolahmu untuk mempersonalisasi sertifikat Kuis Keamanan Digital DigiSafe.
+            </p>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap / Panggilan</label>
+                    <input type="text" id="studentNameInput" placeholder="Contoh: Ahmad Fauzan" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Asal Sekolah / Madrasah</label>
+                    <input type="text" id="studentSchoolInput" placeholder="Contoh: MTsN 1 Lamongan" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 outline-none">
+                </div>
+                <button onclick="saveStudentProfile()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 rounded-xl transition-colors">
+                    Simpan Profil Belajar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT INTERAKTIF ==================== -->
+    <script>
+        // Inisialisasi ikon Lucide
+        lucide.createIcons();
+
+        // State pengguna
+        let studentProfile = { name: '', school: '' };
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openProfileModal() {
+            document.getElementById('profileModal').classList.remove('hidden');
+        }
+
+        function closeProfileModal() {
+            document.getElementById('profileModal').classList.add('hidden');
+        }
+
+        function saveStudentProfile() {
+            const nameVal = document.getElementById('studentNameInput').value.trim();
+            const schoolVal = document.getElementById('studentSchoolInput').value.trim();
+            if (nameVal) {
+                studentProfile.name = nameVal;
+                studentProfile.school = schoolVal || 'Pelajar Indonesia';
+                document.getElementById('navUserLabel').textContent = nameVal.split(' ')[0];
+            }
+            closeProfileModal();
+        }
+
+        // ==================== LOGIKA 1: PERIKSA INFORMASI & DETEKSI ANCAMAN ====================
+        const sampleMessages = {
+            phishing: "SELAMAT! Nomor kamu terpilih memenangkan hadiah uang tunai Rp 15.000.000 dari undian resmi. Segera klaim sebelum hangus hari ini dengan klik tautan http://klaim-hadiah-resmi.xyz dan masukkan kode OTP yang masuk ke SMS kamu!",
+            hoax: "SEBARKAN SEKARANG KE SEMUA GRUP!! Mulai besok malam jaringan internet seluruh Indonesia akan dimatikan total selama 7 hari karena radiasi berbahaya. Jangan sampai tidak tahu, kirim ke 10 temanmu sekarang juga!!",
+            valid: "Informasi Resmi: Kementerian Pendidikan dan Komdigi mengajak pelajar meningkatkan literasi digital dengan selalu memeriksa sumber berita melalui kanal terverifikasi serta menjaga kerahasiaan kata sandi dan kode OTP."
+        };
+
+        function fillSample(type) {
+            document.getElementById('messageInput').value = sampleMessages[type];
+            analyzeMessage();
+        }
+
+        function clearMessage() {
+            document.getElementById('messageInput').value = '';
+            document.getElementById('analysisResult').classList.add('hidden');
+        }
+
+        function analyzeMessage() {
+            const text = document.getElementById('messageInput').value.trim();
+            const resultBox = document.getElementById('analysisResult');
+
+            if (!text) {
+                resultBox.classList.remove('hidden');
+                resultBox.innerHTML = `
+                    <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-800 text-sm flex items-center gap-3">
+                        <i data-lucide="info" class="w-5 h-5 shrink-0"></i>
+                        <span>Silakan masukkan teks pesan atau tautan terlebih dahulu untuk dianalisis oleh sistem DigiSafe.</span>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            const lower = text.toLowerCase();
+            let riskScore = 0;
+            let redFlags = [];
+
+            // Deteksi pola Phishing / Penipuan / Pinjol Ilegal
+            const scamKeywords = ['menang hadiah', 'selamat!', 'undian', 'klaim', 'transfer', 'uang tunai', 'pinjaman cepat', 'bunga rendah', 'dana kaget', 'rekening'];
+            if (scamKeywords.some(k => lower.includes(k))) {
+                riskScore += 35;
+                redFlags.push('Mengandung iming-iming hadiah, uang, atau tawaran finansial yang tidak wajar.');
+            }
+
+            // Deteksi permintaan data sensitif / OTP
+            const sensitiveKeywords = ['otp', 'pin', 'password', 'kata sandi', 'nik', 'ktp', 'cvv', 'kode verifikasi'];
+            if (sensitiveKeywords.some(k => lower.includes(k))) {
+                riskScore += 45;
+                redFlags.push('Meminta data rahasia (Kode OTP, PIN, Kata Sandi, atau NIK) — ciri mutlak penipuan siber.');
+            }
+
+            // Deteksi tautan mencurigakan
+            const linkPatterns = ['http://', 'bit.ly', '.xyz', '.top', '.club', 'klik tautan', 'klik link'];
+            if (linkPatterns.some(k => lower.includes(k))) {
+                riskScore += 25;
+                redFlags.push('Terdapat tautan tidak resmi atau pemendek URL yang berisiko mengarah ke situs phishing.');
+            }
+
+            // Deteksi pola Hoaks Berantai (Ciri DKIS Cirebon & Komdigi)
+            const hoaxKeywords = ['sebarkan', 'viralkan', 'kirim ke', 'semua grup', 'mulai besok', 'jangan sampai tidak tahu', 'bahaya besar', '!!'];
+            if (hoaxKeywords.some(k => lower.includes(k))) {
+                riskScore += 30;
+                redFlags.push('Menggunakan kalimat provokatif, huruf kapital berlebihan, dan desakan untuk disebarkan berantai (ciri khas berita hoaks).');
+            }
+
+            riskScore = Math.min(riskScore, 100);
+
+            let statusBadge, cardStyle, iconName, summaryText;
+            if (riskScore >= 50) {
+                statusBadge = 'RISIKO TINGGI • TERINDIKASI PHISHING / HOAKS';
+                cardStyle = 'bg-rose-50/80 border-rose-200 text-rose-900';
+                iconName = 'shield-x';
+                summaryText = 'Pesan ini memiliki tanda bahaya penipuan digital atau berita bohong. Jangan klik tautan apa pun, jangan berikan kode OTP, dan jangan meneruskan pesan ini.';
+            } else if (riskScore >= 20) {
+                statusBadge = 'PERLU WASPADA • BELUM TERVERIFIKASI';
+                cardStyle = 'bg-amber-50/80 border-amber-200 text-amber-900';
+                iconName = 'alert-triangle';
+                summaryText = 'Terdapat indikator pesan viral atau tautan yang perlu dipastikan kebenarannya. Lakukan 3 langkah cek fakta sebelum mempercayai atau membagikannya.';
+            } else {
+                statusBadge = 'INDIKASI RENDAH • TETAP KRITIS';
+                cardStyle = 'bg-emerald-50/80 border-emerald-200 text-emerald-900';
+                iconName = 'shield-check';
+                summaryText = 'Tidak ditemukan kata kunci penipuan atau provokasi hoaks yang mencolok. Namun, tetap pastikan sumber berita berasal dari media atau lembaga resmi.';
+            }
+
+            const flagsHtml = redFlags.length > 0
+                ? `<ul class="mt-3 space-y-1.5 text-xs sm:text-sm list-disc pl-5">${redFlags.map(f => `<li>${f}</li>`).join('')}</ul>`
+                : `<p class="mt-2 text-xs sm:text-sm opacity-90">Tidak terdeteksi pola permintaan OTP, iming-iming hadiah palsu, maupun ajakan viral berantai.</p>`;
+
+            resultBox.classList.remove('hidden');
+            resultBox.innerHTML = `
+                <div class="rounded-2xl border p-5 sm:p-6 ${cardStyle}">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <div class="flex items-center gap-2 font-display font-bold text-sm sm:text-base">
+                            <i data-lucide="${iconName}" class="w-5 h-5"></i>
+                            <span>${statusBadge}</span>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-white/80 text-xs font-extrabold">
+                            Skor Risiko: ${riskScore}/100
+                        </span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-3">${summaryText}</p>
+                    <div class="bg-white/75 rounded-xl p-4">
+                        <div class="text-xs font-bold uppercase tracking-wider opacity-75">Hasil Analisis Indikator:</div>
+                        ${flagsHtml}
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-black/10 flex flex-wrap items-center justify-between gap-2 text-xs">
+                        <span class="font-semibold">Rekomendasi: Saring sebelum Sharing (Komdigi & Diskominfo)</span>
+                        <a href="#edukasi" class="underline font-bold">Pelajari 3 Langkah Cek Fakta →</a>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // ==================== LOGIKA 2: PINDAI RISIKO & CEK PASSWORD ====================
+        function calculateRiskScore() {
+            const ids = ['qRisk1', 'qRisk2', 'qRisk3', 'qRisk4', 'qRisk5'];
+            let total = 0;
+            let incomplete = false;
+
+            ids.forEach(id => {
+                const val = document.getElementById(id).value;
+                if (val === '') incomplete = true;
+                else total += parseInt(val, 10);
+            });
+
+            const out = document.getElementById('riskScoreOutput');
+            out.classList.remove('hidden');
+
+            if (incomplete) {
+                out.innerHTML = `<p class="text-sm text-amber-700 font-medium">Mohon lengkapi semua 5 pertanyaan pemindaian terlebih dahulu.</p>`;
+                return;
+            }
+
+            const percent = Math.round((total / 10) * 100);
+            let level, colorClass, advice;
+
+            if (percent >= 80) {
+                level = 'Tangguh Digital (Sangat Baik)';
+                colorClass = 'text-emerald-700 bg-emerald-50 border-emerald-200';
+                advice = 'Kebiasaan keamanan digitalmu sudah sangat baik! Pertahankan penggunaan kata sandi unik, 2FA, dan sikap kritis terhadap informasi viral.';
+            } else if (percent >= 50) {
+                level = 'Cukup Waspada (Perlu Penguatan)';
+                colorClass = 'text-amber-700 bg-amber-50 border-amber-200';
+                advice = 'Kamu sudah memahami dasar keamanan digital, namun masih ada celah seperti penggunaan kata sandi yang sama atau kurangnya verifikasi 2 langkah (2FA).';
+            } else {
+                level = 'Rentan Ancaman Digital';
+                colorClass = 'text-rose-700 bg-rose-50 border-rose-200';
+                advice = 'Akun dan data pribadimu berisiko tinggi terkena peretasan atau hoaks. Segera bedakan kata sandi tiap akun, aktifkan 2FA, dan jangan pernah membagikan kode OTP.';
+            }
+
+            out.innerHTML = `
+                <div class="p-4 rounded-xl border ${colorClass}">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="font-display font-bold text-base">${level}</span>
+                        <span class="font-extrabold text-sm">Skor: ${percent}%</span>
+                    </div>
+                    <p class="text-xs sm:text-sm leading-relaxed">${advice}</p>
+                </div>
+            `;
+        }
+
+        function evaluatePassword() {
+            const pwd = document.getElementById('pwdTester').value;
+            const bar = document.getElementById('pwdBar');
+            const label = document.getElementById('pwdLabel');
+
+            const hasLen = pwd.length >= 12;
+            const hasUpperLower = /[A-Z]/.test(pwd) && /[a-z]/.test(pwd);
+            const hasNum = /[0-9]/.test(pwd);
+            const hasSym = /[^A-Za-z0-9]/.test(pwd);
+
+            updateCheckItem('chkLen', hasLen);
+            updateCheckItem('chkUpper', hasUpperLower);
+            updateCheckItem('chkNum', hasNum);
+            updateCheckItem('chkSym', hasSym);
+
+            if (!pwd) {
+                bar.style.width = '0%';
+                label.textContent = 'Belum diuji';
+                label.className = 'text-slate-600';
+                return;
+            }
+
+            let score = [hasLen, hasUpperLower, hasNum, hasSym].filter(Boolean).length;
+            if (score <= 1) {
+                bar.style.width = '25%';
+                bar.className = 'h-full bg-rose-500 transition-all duration-300 rounded-full';
+                label.textContent = 'Sangat Lemah (Mudah Ditebak)';
+                label.className = 'text-rose-600';
+            } else if (score === 2) {
+                bar.style.width = '50%';
+                bar.className = 'h-full bg-amber-500 transition-all duration-300 rounded-full';
+                label.textContent = 'Sedang (Tambahkan Simbol & Panjang)';
+                label.className = 'text-amber-600';
+            } else if (score === 3) {
+                bar.style.width = '75%';
+                bar.className = 'h-full bg-blue-500 transition-all duration-300 rounded-full';
+                label.textContent = 'Kuat';
+                label.className = 'text-blue-600';
+            } else {
+                bar.style.width = '100%';
+                bar.className = 'h-full bg-emerald-500 transition-all duration-300 rounded-full';
+                label.textContent = 'Sangat Kuat & Aman!';
+                label.className = 'text-emerald-600';
+            }
+        }
+
+        function updateCheckItem(id, passed) {
+            const el = document.getElementById(id);
+            const icon = el.querySelector('svg') || el.querySelector('i');
+            if (passed) {
+                el.classList.remove('text-slate-600');
+                el.classList.add('text-emerald-700', 'font-medium');
+                el.innerHTML = `<i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i><span>${el.querySelector('span').textContent}</span>`;
+            } else {
+                el.classList.remove('text-emerald-700', 'font-medium');
+                el.classList.add('text-slate-600');
+                el.innerHTML = `<i data-lucide="circle" class="w-3.5 h-3.5 text-slate-300 shrink-0"></i><span>${el.querySelector('span').textContent}</span>`;
+            }
+            lucide.createIcons();
+        }
+
+        function generateStrongPassword() {
+            const words = ['Cerdas', 'Aman', 'Literasi', 'Bijak', 'Saring'];
+            const syms = ['@', '#', '$', '!', '&'];
+            const w1 = words[Math.floor(Math.random() * words.length)];
+            const w2 = words[Math.floor(Math.random() * words.length)];
+            const num = Math.floor(100 + Math.random() * 900);
+            const sym = syms[Math.floor(Math.random() * syms.length)];
+            document.getElementById('pwdTester').value = `${w1}${sym}${w2}${num}!`;
+            evaluatePassword();
+        }
+
+        // ==================== LOGIKA 3: KUIS KEAMANAN DIGITAL (Lampiran 1 Gambar 5) ====================
+        const quizData = [
+            {
+                question: "Apa yang dilakukan jika seseorang meminta kode OTP?",
+                options: [
+                    "Bagikan jika kenal",
+                    "Jangan bagikan dan cek kanal resmi",
+                    "Kirim ke grup"
+                ],
+                correct: 1,
+                explanation: "Kode OTP (One-Time Password) bersifat sangat rahasia dan berfungsi seperti kunci masuk akunmu. Pihak resmi tidak pernah meminta kode OTP."
+            },
+            {
+                question: "Manakah yang merupakan ciri utama berita bohong (hoaks) menurut literasi digital?",
+                options: [
+                    "Memiliki sumber resmi yang jelas dan terverifikasi media arus utama",
+                    "Judul sangat provokatif, memicu kepanikan, dan meminta disebarkan viral ke banyak grup",
+                    "Mencantumkan data penelitian dan tanggal penerbitan yang akurat"
+                ],
+                correct: 1,
+                explanation: "Berita hoaks sengaja dirancang memancing emosi (takut/marah) agar pembaca langsung membagikannya tanpa memeriksa fakta terlebih dahulu."
+            },
+            {
+                question: "Apa langkah pertama yang harus dilakukan saat menerima pesan viral di grup chat?",
+                options: [
+                    "Langsung meneruskan (forward) agar menjadi yang paling update",
+                    "Menahan diri, memeriksa kebenaran informasi di kanal resmi, dan membandingkan fakta",
+                    "Menyalin teksnya lalu mengunggahnya ulang ke semua media sosial"
+                ],
+                correct: 1,
+                explanation: "Terapkan prinsip 'Saring sebelum Sharing': pastikan validitas sumber, tanggal kejadian, dan kebenaran isi sebelum dibagikan."
+            },
+            {
+                question: "Mengapa kita tidak disarankan memakai satu kata sandi yang sama untuk semua akun digital?",
+                options: [
+                    "Karena jika satu akun bocor, peretas dapat langsung mengambil alih seluruh akun lainnya",
+                    "Karena kata sandi yang sama membuat koneksi internet menjadi lebih lambat",
+                    "Karena media sosial melarang penggunaan huruf dan angka"
+                ],
+                correct: 0,
+                explanation: "Menggunakan kata sandi berbeda untuk tiap akun penting serta mengaktifkan 2FA mencegah efek domino peretasan akun."
+            },
+            {
+                question: "Mengapa literasi digital sangat penting dimiliki oleh siswa di era modern?",
+                options: [
+                    "Agar bisa bermain game daring sepanjang hari tanpa batas waktu",
+                    "Untuk melatih kemampuan berpikir kritis, menyaring informasi valid, dan terlindungi dari risiko siber",
+                    "Supaya memiliki banyak pengikut di media sosial"
+                ],
+                correct: 1,
+                explanation: "Literasi digital membekali pelajar kemampuan berpikir kritis, pemecahan masalah, serta kecakapan memanfaatkan teknologi secara aman dan produktif."
+            },
+            {
+                question: "Bagaimana wujud etika bermedia sosial dan menjaga jejak digital yang baik?",
+                options: [
+                    "Mengunggah foto teman tanpa izin sebagai bahan candaan di internet",
+                    "Menggunakan bahasa sopan, menghargai privasi orang lain, dan menghindari cyberbullying",
+                    "Menulis komentar kasar saat berbeda pendapat di kolom komentar"
+                ],
+                correct: 1,
+                explanation: "Setiap unggahan dan komentar meninggalkan jejak digital permanen. Warga digital yang bijak selalu santun, menghormati privasi, dan menolak perundungan siber."
+            }
+        ];
+
+        let currentQuizIdx = 0;
+        let selectedOptionIdx = null;
+        let quizScore = 0;
+        let questionAnswered = false;
+
+        function renderQuiz() {
+            const q = quizData[currentQuizIdx];
+            selectedOptionIdx = null;
+            questionAnswered = false;
+
+            document.getElementById('quizProgressText').textContent = `Pertanyaan ${currentQuizIdx + 1} dari ${quizData.length}`;
+            document.getElementById('quizScoreBadge').textContent = `Skor: ${quizScore}`;
+            document.getElementById('quizProgressBar').style.width = `${((currentQuizIdx + 1) / quizData.length) * 100}%`;
+            document.getElementById('quizQuestion').textContent = q.question;
+
+            const optionsEl = document.getElementById('quizOptions');
+            optionsEl.innerHTML = q.options.map((opt, idx) => `
+                <button type="button" onclick="selectQuizOption(${idx})" id="optBtn_${idx}"
+                    class="w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-brand-400 hover:bg-brand-50/40 transition-all flex items-center gap-3.5 text-sm sm:text-base text-slate-700 font-medium">
+                    <span id="optRadio_${idx}" class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center shrink-0"></span>
+                    <span>${opt}</span>
+                </button>
+            `).join('');
+
+            const feedbackEl = document.getElementById('quizFeedback');
+            feedbackEl.classList.add('hidden');
+            feedbackEl.innerHTML = '';
+
+            const nextBtn = document.getElementById('quizNextBtn');
+            nextBtn.disabled = true;
+            document.getElementById('quizNextLabel').textContent = 'Periksa Jawaban';
+        }
+
+        function selectQuizOption(idx) {
+            if (questionAnswered) return;
+            selectedOptionIdx = idx;
+
+            quizData[currentQuizIdx].options.forEach((_, i) => {
+                const btn = document.getElementById(`optBtn_${i}`);
+                const radio = document.getElementById(`optRadio_${i}`);
+                if (i === idx) {
+                    btn.classList.add('border-brand-600', 'bg-brand-50/70', 'text-brand-900');
+                    radio.classList.remove('border-slate-300');
+                    radio.classList.add('border-brand-600', 'bg-brand-600');
+                    radio.innerHTML = `<span class="w-2 h-2 rounded-full bg-white"></span>`;
+                } else {
+                    btn.classList.remove('border-brand-600', 'bg-brand-50/70', 'text-brand-900');
+                    radio.classList.add('border-slate-300');
+                    radio.classList.remove('border-brand-600', 'bg-brand-600');
+                    radio.innerHTML = '';
+                }
+            });
+
+            document.getElementById('quizNextBtn').disabled = false;
+        }
+
+        function handleQuizNext() {
+            if (selectedOptionIdx === null) return;
+
+            const q = quizData[currentQuizIdx];
+            const feedbackEl = document.getElementById('quizFeedback');
+
+            if (!questionAnswered) {
+                questionAnswered = true;
+                const isCorrect = selectedOptionIdx === q.correct;
+                if (isCorrect) quizScore += 100;
+
+                document.getElementById('quizScoreBadge').textContent = `Skor: ${quizScore}`;
+
+                // Highlight benar & salah
+                q.options.forEach((_, i) => {
+                    const btn = document.getElementById(`optBtn_${i}`);
+                    btn.disabled = true;
+                    if (i === q.correct) {
+                        btn.className = "w-full text-left p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 flex items-center gap-3.5 text-sm sm:text-base font-semibold";
+                    } else if (i === selectedOptionIdx && !isCorrect) {
+                        btn.className = "w-full text-left p-4 rounded-2xl border-2 border-rose-400 bg-rose-50 text-rose-900 flex items-center gap-3.5 text-sm sm:text-base font-medium";
+                    }
+                });
+
+                feedbackEl.classList.remove('hidden');
+                feedbackEl.className = isCorrect
+                    ? "mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-sm leading-relaxed fade-in"
+                    : "mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900 text-sm leading-relaxed fade-in";
+
+                feedbackEl.innerHTML = `
+                    <div class="font-bold mb-1">${isCorrect ? 'Tepat Sekali!' : 'Kurang Tepat!'}</div>
+                    <p>${q.explanation}</p>
+                `;
+
+                document.getElementById('quizNextLabel').textContent =
+                    currentQuizIdx < quizData.length - 1 ? 'Lanjut' : 'Lihat Hasil Akhir';
+            } else {
+                if (currentQuizIdx < quizData.length - 1) {
+                    currentQuizIdx++;
+                    renderQuiz();
+                } else {
+                    showQuizSummary();
+                }
+            }
+        }
+
+        function showQuizSummary() {
+            const maxScore = quizData.length * 100;
+            const percent = Math.round((quizScore / maxScore) * 100);
+            const userName = studentProfile.name || 'Sahabat Digital';
+            const userSchool = studentProfile.school || 'Pelajar Cerdas Indonesia';
+
+            const card = document.getElementById('quizCard');
+            card.innerHTML = `
+                <div class="text-center py-4 fade-in">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="award" class="w-9 h-9"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-600">LENCANA LITERASI DIGITAL</span>
+                    <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 mt-1">
+                        Selamat, ${userName}!
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">${userSchool}</p>
+
+                    <div class="my-6 inline-flex items-baseline gap-1 px-6 py-4 rounded-2xl bg-brand-50 border border-brand-100">
+                        <span class="font-display font-extrabold text-4xl text-brand-600">${percent}</span>
+                        <span class="text-sm font-bold text-slate-500">/ 100 Poin</span>
+                    </div>
+
+                    <p class="text-sm text-slate-600 max-w-md mx-auto leading-relaxed mb-7">
+                        ${percent >= 80
+                            ? 'Luar biasa! Kamu telah menguasai prinsip verifikasi informasi, keamanan kata sandi & OTP, serta etika bermedia sosial.'
+                            : 'Bagus! Terus pelajari 6 materi edukasi DigiSafe agar semakin mahir mengenali hoaks dan ancaman siber.'}
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center gap-3">
+                        <button type="button" onclick="restartQuiz()" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors">
+                            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                            <span>Ulangi Kuis</span>
+                        </button>
+                        <a href="#edukasi" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold px-6 py-3 rounded-xl transition-colors">
+                            <span>Baca 6 Materi Edukasi</span>
+                        </a>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function restartQuiz() {
+            currentQuizIdx = 0;
+            quizScore = 0;
+            const card = document.getElementById('quizCard');
+            card.innerHTML = `
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-500 mb-3">
+                    <span id="quizProgressText">Pertanyaan 1 dari 6</span>
+                    <span id="quizScoreBadge" class="text-brand-600">Skor: 0</span>
+                </div>
+                <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden mb-7">
+                    <div id="quizProgressBar" class="h-full bg-brand-600 transition-all duration-300" style="width: 16.66%"></div>
+                </div>
+                <h3 id="quizQuestion" class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-6 leading-snug"></h3>
+                <div id="quizOptions" class="space-y-3 mb-6"></div>
+                <div id="quizFeedback" class="hidden mb-6 p-4 rounded-2xl text-sm leading-relaxed fade-in"></div>
+                <div class="flex items-center justify-between pt-2">
+                    <span class="text-xs text-slate-400">Pilih satu jawaban paling tepat</span>
+                    <button id="quizNextBtn" type="button" onclick="handleQuizNext()" disabled
+                        class="inline-flex items-center gap-2 bg-brand-600 disabled:bg-slate-300 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-xl transition-all">
+                        <span id="quizNextLabel">Periksa Jawaban</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            `;
+            renderQuiz();
+            lucide.createIcons();
+        }
+
+        // Jalankan kuis saat halaman dimuat
+        renderQuiz();
+    </script>
+</body>
+</html>
